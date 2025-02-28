@@ -1,4 +1,4 @@
-// Game state (unchanged)
+// Game state
 let grid = [];
 let score = 0;
 let bestScore = localStorage.getItem("bestScore") || 0;
@@ -27,7 +27,7 @@ function initializeGame() {
     renderGrid();
 }
 
-// Add a random tile (unchanged)
+// Add a random tile
 function addRandomTile() {
     const emptyCells = [];
     for (let i = 0; i < GRID_SIZE; i++) {
@@ -43,7 +43,7 @@ function addRandomTile() {
     return null;
 }
 
-// Render the grid with squishy animations
+// Render the grid with neomorphic animations
 function renderGrid(newTile = null, mergedTiles = []) {
     const gridElement = document.getElementById("grid");
     gridElement.innerHTML = "";
@@ -66,11 +66,12 @@ function renderGrid(newTile = null, mergedTiles = []) {
     }
 }
 
-// Rest of the JavaScript remains unchanged (handleKeyPress, movement functions, etc.)
+// Save the current state for undo
 function saveState() {
     previousState = { grid: grid.map(row => row.slice()), score };
 }
 
+// Handle arrow key presses
 function handleKeyPress(event) {
     let moved = false;
     saveState();
@@ -89,6 +90,7 @@ function handleKeyPress(event) {
     }
 }
 
+// Undo the last move
 function undoMove() {
     if (previousState) {
         grid = previousState.grid.map(row => row.slice());
@@ -99,6 +101,7 @@ function undoMove() {
     }
 }
 
+// Movement functions (unchanged except for return structure)
 function moveUp() {
     let moved = false;
     let mergedTiles = [];
