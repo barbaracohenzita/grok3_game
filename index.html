@@ -10,13 +10,27 @@
     <div class="container">
         <header>
             <h1>2048</h1>
-            <div class="score-container">
-                <div class="score-label">Score</div>
-                <div id="score">0</div>
+            <div class="score-board">
+                <div class="score-container">
+                    <div class="score-label">Score</div>
+                    <div id="score">0</div>
+                </div>
+                <div class="score-container">
+                    <div class="score-label">Best</div>
+                    <div id="best-score">0</div>
+                </div>
             </div>
-            <button id="new-game">New Game</button>
+            <div class="buttons">
+                <button id="new-game">New Game</button>
+                <button id="undo">Undo</button>
+            </div>
         </header>
         <div class="grid" id="grid"></div>
+        <div class="game-over" id="game-over">
+            <h2>Game Over!</h2>
+            <p>Score: <span id="final-score"></span></p>
+            <button id="restart">Try Again</button>
+        </div>
     </div>
     <script src="game.js"></script>
 </body>
