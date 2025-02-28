@@ -6,19 +6,23 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #f5e8d3, #e0d5c1); /* Soft jelly-like background */
+    font-family: 'Arial', sans-serif;
+    background: #e0e0e0; /* Neutral neomorphic base color */
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
 }
 
+/* Container */
 .container {
     text-align: center;
     padding: 20px;
     max-width: 500px;
     width: 100%;
+    background: #e0e0e0; /* Same as body for seamless integration */
+    border-radius: 20px;
+    box-shadow: 8px 8px 16px rgba(163, 177, 198, 0.6), -8px -8px 16px rgba(255, 255, 255, 0.5);
 }
 
 /* Header styling */
@@ -28,30 +32,33 @@ header {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
+    padding: 10px;
 }
 
 h1 {
     font-size: 48px;
-    color: #5a5246;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* 3D title effect */
+    color: #6b7280; /* Soft gray for realism */
+    text-shadow: 2px 2px 4px rgba(163, 177, 198, 0.6), -2px -2px 4px rgba(255, 255, 255, 0.5);
 }
 
 .score-board {
     display: flex;
-    gap: 10px;
+    gap: 12px;
 }
 
 .score-container {
-    background: linear-gradient(145deg, #d4c6b5, #a89b8c);
-    padding: 10px 20px;
-    border-radius: 10px;
-    color: #fff;
+    background: #e0e0e0;
+    padding: 12px 20px;
+    border-radius: 12px;
+    color: #6b7280;
     min-width: 80px;
-    box-shadow: inset 2px 2px 5px rgba(255, 255, 255, 0.5), inset -2px -2px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: inset 4px 4px 8px rgba(163, 177, 198, 0.6), inset -4px -4px 8px rgba(255, 255, 255, 0.5);
+    transition: all 0.2s ease;
 }
 
 .score-label {
     font-size: 18px;
+    font-weight: 500;
 }
 
 #score, #best-score {
@@ -61,23 +68,24 @@ h1 {
 
 .buttons {
     display: flex;
-    gap: 10px;
+    gap: 12px;
 }
 
 #new-game, #undo, #restart {
-    padding: 10px 20px;
+    padding: 12px 20px;
     font-size: 16px;
-    background: linear-gradient(145deg, #9f8b77, #7a6652);
-    color: white;
+    background: #e0e0e0;
+    color: #6b7280;
     border: none;
-    border-radius: 10px;
+    border-radius: 12px;
     cursor: pointer;
-    transition: transform 0.1s ease;
-    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3), -2px -2px 4px rgba(255, 255, 255, 0.2);
+    box-shadow: 4px 4px 8px rgba(163, 177, 198, 0.6), -4px -4px 8px rgba(255, 255, 255, 0.5);
+    transition: all 0.2s ease;
 }
 
 #new-game:hover, #undo:hover, #restart:hover {
-    transform: scale(1.05); /* Slight squish on hover */
+    box-shadow: inset 4px 4px 8px rgba(163, 177, 198, 0.6), inset -4px -4px 8px rgba(255, 255, 255, 0.5);
+    transform: translateY(2px); /* Subtle press effect */
 }
 
 /* Grid styling */
@@ -85,33 +93,38 @@ h1 {
     width: 100%;
     max-width: 400px;
     aspect-ratio: 1 / 1;
-    background: linear-gradient(145deg, #c4b5a5, #a89b8c);
-    border-radius: 15px;
+    background: #e0e0e0;
+    border-radius: 16px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 12px;
     padding: 12px;
     margin: 0 auto;
-    box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.2), inset -5px -5px 10px rgba(255, 255, 255, 0.2);
+    box-shadow: inset 6px 6px 12px rgba(163, 177, 198, 0.6), inset -6px -6px 12px rgba(255, 255, 255, 0.5);
 }
 
 /* Tile styling */
 .tile {
-    background: linear-gradient(145deg, #e0d5c1, #c4b5a5); /* Default empty tile */
+    background: #e0e0e0; /* Default empty tile */
     border-radius: 12px;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 32px;
     font-weight: bold;
-    color: #5a5246;
-    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2), -4px -4px 8px rgba(255, 255, 255, 0.3);
+    color: #6b7280;
+    box-shadow: 4px 4px 8px rgba(163, 177, 198, 0.6), -4px -4px 8px rgba(255, 255, 255, 0.5);
     transition: all 0.2s ease;
     position: relative;
     overflow: hidden;
 }
 
-/* Glossy overlay for 3D effect */
+/* Neomorphic pressed effect for non-empty tiles */
+.tile:not(:empty) {
+    box-shadow: inset 3px 3px 6px rgba(163, 177, 198, 0.6), inset -3px -3px 6px rgba(255, 255, 255, 0.5);
+}
+
+/* Glossy highlight */
 .tile::before {
     content: '';
     position: absolute;
@@ -119,45 +132,45 @@ h1 {
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.4), transparent 70%);
-    opacity: 0.6;
+    background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.3), transparent 70%);
+    opacity: 0.8;
     pointer-events: none;
 }
 
-/* New tile animation (squishy bounce) */
+/* New tile animation (neomorphic pop) */
 .tile-new {
-    animation: squishIn 0.3s ease;
+    animation: neoPop 0.3s ease-out;
 }
 
-/* Merge animation (jelly squish) */
+/* Merge animation (neomorphic squish) */
 .tile-merged {
-    animation: squishMerge 0.3s ease;
+    animation: neoSquish 0.3s ease;
 }
 
-@keyframes squishIn {
-    0% { transform: scale(0.8); opacity: 0; }
-    50% { transform: scale(1.1); opacity: 1; }
-    100% { transform: scale(1); }
+@keyframes neoPop {
+    0% { transform: scale(0.9); opacity: 0; box-shadow: inset 2px 2px 4px rgba(163, 177, 198, 0.6); }
+    50% { transform: scale(1.05); opacity: 1; }
+    100% { transform: scale(1); box-shadow: inset 3px 3px 6px rgba(163, 177, 198, 0.6), inset -3px -3px 6px rgba(255, 255, 255, 0.5); }
 }
 
-@keyframes squishMerge {
+@keyframes neoSquish {
     0% { transform: scale(1); }
-    50% { transform: scale(1.15); }
+    50% { transform: scale(1.1); box-shadow: inset 5px 5px 10px rgba(163, 177, 198, 0.8), inset -5px -5px 10px rgba(255, 255, 255, 0.7); }
     100% { transform: scale(1); }
 }
 
-/* Tile value colors with glossy gradients */
-.tile-2 { background: linear-gradient(145deg, #eee4da, #d4c9b5); }
-.tile-4 { background: linear-gradient(145deg, #ede0c8, #d3c6a8); }
-.tile-8 { background: linear-gradient(145deg, #f2b179, #d89a63); color: #f9f6f2; }
-.tile-16 { background: linear-gradient(145deg, #f59563, #db7c4a); color: #f9f6f2; }
-.tile-32 { background: linear-gradient(145deg, #f67c5f, #dc6346); color: #f9f6f2; }
-.tile-64 { background: linear-gradient(145deg, #f65e3b, #dc4522); color: #f9f6f2; }
-.tile-128 { background: linear-gradient(145deg, #edcf72, #d3b558); color: #f9f6f2; }
-.tile-256 { background: linear-gradient(145deg, #edcc61, #d3b247); color: #f9f6f2; }
-.tile-512 { background: linear-gradient(145deg, #edc850, #d3af36); color: #f9f6f2; }
-.tile-1024 { background: linear-gradient(145deg, #edc53f, #d3ac25); color: #f9f6f2; }
-.tile-2048 { background: linear-gradient(145deg, #edc22e, #d3a91d); color: #f9f6f2; }
+/* Tile value colors with subtle gradients */
+.tile-2 { background: linear-gradient(145deg, #ececec, #d4d4d4); }
+.tile-4 { background: linear-gradient(145deg, #e5e5e5, #cdcdcd); }
+.tile-8 { background: linear-gradient(145deg, #f2b179, #e09b63); color: #f9f6f2; }
+.tile-16 { background: linear-gradient(145deg, #f59563, #e07c4a); color: #f9f6f2; }
+.tile-32 { background: linear-gradient(145deg, #f67c5f, #e06346); color: #f9f6f2; }
+.tile-64 { background: linear-gradient(145deg, #f65e3b, #e04522); color: #f9f6f2; }
+.tile-128 { background: linear-gradient(145deg, #edcf72, #d8b558); color: #f9f6f2; }
+.tile-256 { background: linear-gradient(145deg, #edcc61, #d8b247); color: #f9f6f2; }
+.tile-512 { background: linear-gradient(145deg, #edc850, #d8af36); color: #f9f6f2; }
+.tile-1024 { background: linear-gradient(145deg, #edc53f, #d8ac25); color: #f9f6f2; }
+.tile-2048 { background: linear-gradient(145deg, #edc22e, #d8a91d); color: #f9f6f2; }
 
 /* Game over overlay */
 .game-over {
@@ -167,18 +180,19 @@ h1 {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
+    background: rgba(224, 224, 224, 0.9);
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    color: #fff;
-    backdrop-filter: blur(5px); /* Frosted glass effect */
+    color: #6b7280;
+    backdrop-filter: blur(8px);
+    box-shadow: inset 0 0 20px rgba(163, 177, 198, 0.4);
 }
 
 .game-over h2 {
     font-size: 48px;
     margin-bottom: 20px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    text-shadow: 2px 2px 4px rgba(163, 177, 198, 0.6), -2px -2px 4px rgba(255, 255, 255, 0.5);
 }
 
 .game-over p {
