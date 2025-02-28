@@ -17,11 +17,14 @@ body {
 .container {
     text-align: center;
     padding: 20px;
+    max-width: 500px;
+    width: 100%;
 }
 
 /* Header styling */
 header {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
@@ -32,23 +35,34 @@ h1 {
     color: #776e65;
 }
 
+.score-board {
+    display: flex;
+    gap: 10px;
+}
+
 .score-container {
     background-color: #bbada0;
     padding: 10px 20px;
     border-radius: 5px;
     color: white;
+    min-width: 80px;
 }
 
 .score-label {
     font-size: 18px;
 }
 
-#score {
+#score, #best-score {
     font-size: 24px;
     font-weight: bold;
 }
 
-#new-game {
+.buttons {
+    display: flex;
+    gap: 10px;
+}
+
+#new-game, #undo, #restart {
     padding: 10px 20px;
     font-size: 16px;
     background-color: #8f7a66;
@@ -59,20 +73,22 @@ h1 {
     transition: background-color 0.2s;
 }
 
-#new-game:hover {
+#new-game:hover, #undo:hover, #restart:hover {
     background-color: #9f8b77;
 }
 
 /* Grid styling */
 .grid {
-    width: 400px;
-    height: 400px;
+    width: 100%;
+    max-width: 400px;
+    aspect-ratio: 1 / 1;
     background-color: #bbada0;
     border-radius: 5px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 10px;
     padding: 10px;
+    margin: 0 auto;
 }
 
 /* Tile styling */
@@ -85,10 +101,31 @@ h1 {
     font-size: 32px;
     font-weight: bold;
     color: #776e65;
-    transition: all 0.2s ease; /* Smooth animation for movement and merging */
+    transition: all 0.2s ease;
 }
 
-/* Different tile value colors */
+/* New tile animation */
+.tile-new {
+    animation: appear 0.2s ease-in;
+}
+
+/* Merge animation */
+.tile-merged {
+    animation: merge 0.2s ease;
+}
+
+@keyframes appear {
+    from { opacity: 0; transform: scale(0); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes merge {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+/* Tile value colors */
 .tile-2 { background-color: #eee4da; }
 .tile-4 { background-color: #ede0c8; }
 .tile-8 { background-color: #f2b179; color: #f9f6f2; }
@@ -101,16 +138,40 @@ h1 {
 .tile-1024 { background-color: #edc53f; color: #f9f6f2; }
 .tile-2048 { background-color: #edc22e; color: #f9f6f2; }
 
+/* Game over overlay */
+.game-over {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #fff;
+}
+
+.game-over h2 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.game-over p {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
 /* Responsive design */
 @media (max-width: 500px) {
-    .grid {
-        width: 300px;
-        height: 300px;
-    }
-    .tile {
-        font-size: 24px;
-    }
-    h1 {
-        font-size: 36px;
-    }
+    h1 { font-size: 36px; }
+    .tile { font-size: 24px; }
+    .score-container { padding: 8px 15px; }
+    #new-game, #undo, #restart { padding: 8px 15px; }
+}
+
+@media (max-width: 350px) {
+    .tile { font-size: 18px; }
+    h1 { font-size: 28px; }
 }
