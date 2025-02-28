@@ -1,8 +1,8 @@
-// Game state
+// Game state (unchanged)
 let grid = [];
 let score = 0;
 let bestScore = localStorage.getItem("bestScore") || 0;
-let previousState = null; // For undo feature
+let previousState = null;
 const GRID_SIZE = 4;
 
 // Initialize the game on page load
@@ -27,7 +27,7 @@ function initializeGame() {
     renderGrid();
 }
 
-// Add a random tile (2 or 4) to an empty cell
+// Add a random tile (unchanged)
 function addRandomTile() {
     const emptyCells = [];
     for (let i = 0; i < GRID_SIZE; i++) {
@@ -38,12 +38,12 @@ function addRandomTile() {
     if (emptyCells.length > 0) {
         const { x, y } = emptyCells[Math.floor(Math.random() * emptyCells.length)];
         grid[x][y] = Math.random() < 0.9 ? 2 : 4;
-        return { x, y, value: grid[x][y] }; // Return new tile info for animation
+        return { x, y, value: grid[x][y] };
     }
     return null;
 }
 
-// Render the grid to the DOM with animations
+// Render the grid with squishy animations
 function renderGrid(newTile = null, mergedTiles = []) {
     const gridElement = document.getElementById("grid");
     gridElement.innerHTML = "";
@@ -54,11 +54,9 @@ function renderGrid(newTile = null, mergedTiles = []) {
             if (grid[i][j] !== 0) {
                 tile.textContent = grid[i][j];
                 tile.classList.add(`tile-${grid[i][j]}`);
-                // Add animation for new tile
                 if (newTile && newTile.x === i && newTile.y === j) {
                     tile.classList.add("tile-new");
                 }
-                // Add animation for merged tiles
                 if (mergedTiles.some(t => t.x === i && t.y === j)) {
                     tile.classList.add("tile-merged");
                 }
@@ -68,15 +66,14 @@ function renderGrid(newTile = null, mergedTiles = []) {
     }
 }
 
-// Save the current state for undo
+// Rest of the JavaScript remains unchanged (handleKeyPress, movement functions, etc.)
 function saveState() {
     previousState = { grid: grid.map(row => row.slice()), score };
 }
 
-// Handle arrow key presses
 function handleKeyPress(event) {
     let moved = false;
-    saveState(); // Save state before move
+    saveState();
     let mergedTiles = [];
     switch (event.key) {
         case "ArrowUp": [moved, mergedTiles] = moveUp(); break;
@@ -92,18 +89,16 @@ function handleKeyPress(event) {
     }
 }
 
-// Undo the last move
 function undoMove() {
     if (previousState) {
         grid = previousState.grid.map(row => row.slice());
         score = previousState.score;
-        previousState = null; // Clear after undo
+        previousState = null;
         updateScore();
         renderGrid();
     }
 }
 
-// Move tiles up
 function moveUp() {
     let moved = false;
     let mergedTiles = [];
@@ -119,7 +114,6 @@ function moveUp() {
     return [moved, mergedTiles];
 }
 
-// Move tiles down
 function moveDown() {
     let moved = false;
     let mergedTiles = [];
@@ -135,7 +129,6 @@ function moveDown() {
     return [moved, mergedTiles];
 }
 
-// Move tiles left
 function moveLeft() {
     let moved = false;
     let mergedTiles = [];
@@ -151,7 +144,6 @@ function moveLeft() {
     return [moved, mergedTiles];
 }
 
-// Move tiles right
 function moveRight() {
     let moved = false;
     let mergedTiles = [];
@@ -167,7 +159,6 @@ function moveRight() {
     return [moved, mergedTiles];
 }
 
-// Slide and merge tiles, returning merged positions
 function slideAndMerge(line) {
     let filtered = line.filter(x => x !== 0);
     let result = [];
@@ -186,12 +177,10 @@ function slideAndMerge(line) {
     return [result, merges];
 }
 
-// Update score display
 function updateScore() {
     document.getElementById("score").textContent = score;
 }
 
-// Update best score
 function updateBestScore() {
     if (score > bestScore) {
         bestScore = score;
@@ -200,18 +189,15 @@ function updateBestScore() {
     document.getElementById("best-score").textContent = bestScore;
 }
 
-// Show game over screen
 function showGameOver() {
     document.getElementById("game-over").style.display = "flex";
     document.getElementById("final-score").textContent = score;
 }
 
-// Hide game over screen
 function hideGameOver() {
     document.getElementById("game-over").style.display = "none";
 }
 
-// Check if the game is over
 function isGameOver() {
     for (let i = 0; i < GRID_SIZE; i++) {
         for (let j = 0; j < GRID_SIZE; j++) {
