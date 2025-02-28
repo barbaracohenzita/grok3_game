@@ -1,0 +1,116 @@
+/* Reset default styles and center the game */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #faf8ef;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    text-align: center;
+    padding: 20px;
+}
+
+/* Header styling */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 48px;
+    color: #776e65;
+}
+
+.score-container {
+    background-color: #bbada0;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: white;
+}
+
+.score-label {
+    font-size: 18px;
+}
+
+#score {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#new-game {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #8f7a66;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#new-game:hover {
+    background-color: #9f8b77;
+}
+
+/* Grid styling */
+.grid {
+    width: 400px;
+    height: 400px;
+    background-color: #bbada0;
+    border-radius: 5px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+    padding: 10px;
+}
+
+/* Tile styling */
+.tile {
+    background-color: #cdc1b4;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32px;
+    font-weight: bold;
+    color: #776e65;
+    transition: all 0.2s ease; /* Smooth animation for movement and merging */
+}
+
+/* Different tile value colors */
+.tile-2 { background-color: #eee4da; }
+.tile-4 { background-color: #ede0c8; }
+.tile-8 { background-color: #f2b179; color: #f9f6f2; }
+.tile-16 { background-color: #f59563; color: #f9f6f2; }
+.tile-32 { background-color: #f67c5f; color: #f9f6f2; }
+.tile-64 { background-color: #f65e3b; color: #f9f6f2; }
+.tile-128 { background-color: #edcf72; color: #f9f6f2; }
+.tile-256 { background-color: #edcc61; color: #f9f6f2; }
+.tile-512 { background-color: #edc850; color: #f9f6f2; }
+.tile-1024 { background-color: #edc53f; color: #f9f6f2; }
+.tile-2048 { background-color: #edc22e; color: #f9f6f2; }
+
+/* Responsive design */
+@media (max-width: 500px) {
+    .grid {
+        width: 300px;
+        height: 300px;
+    }
+    .tile {
+        font-size: 24px;
+    }
+    h1 {
+        font-size: 36px;
+    }
+}
