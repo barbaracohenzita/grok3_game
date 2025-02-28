@@ -1,7 +1,7 @@
-/* Import Font Awesome for potential icon use (optional) */
+/* Import Font Awesome (optional) */
 @import url('https://pro.fontawesome.com/releases/v6.0.0-beta1/css/all.css');
 
-/* Reset default styles and center the game */
+/* Reset and center */
 * {
     margin: 0;
     padding: 0;
@@ -10,7 +10,7 @@
 
 body {
     font-family: system-ui, sans-serif;
-    background-color: #e5e9f4; /* Soft gray-blue from reference */
+    background-color: #e5e9f4; /* Consistent neomorphic base */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,7 +20,7 @@ body {
 
 /* Container */
 .container {
-    container-type: inline-size; /* Responsive sizing */
+    container-type: inline-size;
     text-align: center;
     padding: 20px;
     max-width: 500px;
@@ -28,12 +28,12 @@ body {
     background: #e5e9f4;
     border-radius: 1.5rem;
     --shadow: 
-        -0.5rem -0.5rem 1rem hsl(0 0% 100% / 0.75),
-        0.5rem 0.5rem 1rem hsl(0 0% 50% / 0.5);
+        -0.3rem -0.3rem 0.8rem hsl(0 0% 100% / 0.9),
+        0.3rem 0.3rem 0.8rem hsl(0 0% 50% / 0.3);
     box-shadow: var(--shadow);
 }
 
-/* Header styling */
+/* Header */
 header {
     display: flex;
     flex-wrap: wrap;
@@ -45,11 +45,11 @@ header {
 
 h1 {
     font-size: 3rem;
-    color: hsl(0 0% 10%);
+    color: hsl(0 0% 20%);
     text-align: center;
-    text-shadow: 0.1rem 0.1rem 0.2rem hsl(0 0% 50% / 0.3);
 }
 
+/* Score board */
 .score-board {
     display: flex;
     gap: 12px;
@@ -60,17 +60,17 @@ h1 {
     background: #e5e9f4;
     padding: 12px 20px;
     border-radius: 1rem;
-    color: hsl(0 0% 10%);
+    color: hsl(0 0% 20%);
     min-width: 80px;
     --shadow: 
-        -0.5rem -0.5rem 1rem hsl(0 0% 100% / 0.75),
-        0.5rem 0.5rem 1rem hsl(0 0% 50% / 0.5);
+        -0.3rem -0.3rem 0.8rem hsl(0 0% 100% / 0.9),
+        0.3rem 0.3rem 0.8rem hsl(0 0% 50% / 0.3);
     box-shadow: var(--shadow);
     transition: all 0.2s ease;
 }
 
 .score-container:hover {
-    box-shadow: inset 0.5rem 0.5rem 1rem hsl(0 0% 50% / 0.5), inset -0.5rem -0.5rem 1rem hsl(0 0% 100% / 0.75);
+    box-shadow: inset 0.3rem 0.3rem 0.8rem hsl(0 0% 50% / 0.3), inset -0.3rem -0.3rem 0.8rem hsl(0 0% 100% / 0.9);
 }
 
 .score-label {
@@ -83,6 +83,7 @@ h1 {
     font-weight: bold;
 }
 
+/* Buttons */
 .buttons {
     display: flex;
     gap: 12px;
@@ -90,17 +91,17 @@ h1 {
 
 #new-game, #undo, #restart {
     container-type: inline-size;
-    aspect-ratio: 2 / 1; /* Wider than square for better readability */
+    aspect-ratio: 2 / 1;
     border: 0.5rem solid transparent;
     border-radius: 1rem;
-    color: hsl(0 0% 10%);
+    color: hsl(0 0% 20%);
     background: #e5e9f4;
     display: grid;
     place-content: center;
     gap: 0.5rem;
     --shadow: 
-        -0.5rem -0.5rem 1rem hsl(0 0% 100% / 0.75),
-        0.5rem 0.5rem 1rem hsl(0 0% 50% / 0.5);
+        -0.3rem -0.3rem 0.8rem hsl(0 0% 100% / 0.9),
+        0.3rem 0.3rem 0.8rem hsl(0 0% 50% / 0.3);
     box-shadow: var(--shadow);
     outline: none;
     transition: all 0.1s ease;
@@ -109,19 +110,19 @@ h1 {
 }
 
 #new-game:hover, #undo:hover, #restart:hover {
-    color: hsl(10 80% 50%);
-    scale: 1.05;
+    color: hsl(10 50% 50%); /* Softer hover color */
+    scale: 1.03; /* Subtle scale */
 }
 
 #new-game:active, #undo:active, #restart:active {
     box-shadow: 
         var(--shadow),
-        inset 0.5rem 0.5rem 1rem hsl(0 0% 50% / 0.5),
-        inset -0.5rem -0.5rem 1rem hsl(0 0% 100% / 0.75);
-    color: hsl(10 80% 50%);
+        inset 0.3rem 0.3rem 0.8rem hsl(0 0% 50% / 0.3),
+        inset -0.3rem -0.3rem 0.8rem hsl(0 0% 100% / 0.9);
+    color: hsl(10 50% 50%);
 }
 
-/* Grid styling */
+/* Grid */
 .grid {
     container-type: inline-size;
     width: 100%;
@@ -135,12 +136,12 @@ h1 {
     padding: 12px;
     margin: 0 auto;
     --shadow: 
-        -0.5rem -0.5rem 1rem hsl(0 0% 100% / 0.75),
-        0.5rem 0.5rem 1rem hsl(0 0% 50% / 0.5);
+        -0.3rem -0.3rem 0.8rem hsl(0 0% 100% / 0.9),
+        0.3rem 0.3rem 0.8rem hsl(0 0% 50% / 0.3);
     box-shadow: inset var(--shadow);
 }
 
-/* Tile styling */
+/* Tiles */
 .tile {
     container-type: inline-size;
     aspect-ratio: 1 / 1;
@@ -150,10 +151,10 @@ h1 {
     place-content: center;
     font-size: 32cqi;
     font-weight: bold;
-    color: hsl(0 0% 10%);
+    color: hsl(0 0% 20%);
     --shadow: 
-        -0.5rem -0.5rem 1rem hsl(0 0% 100% / 0.75),
-        0.5rem 0.5rem 1rem hsl(0 0% 50% / 0.5);
+        -0.3rem -0.3rem 0.8rem hsl(0 0% 100% / 0.9),
+        0.3rem 0.3rem 0.8rem hsl(0 0% 50% / 0.3);
     box-shadow: var(--shadow);
     transition: all 0.2s ease;
     position: relative;
@@ -162,10 +163,11 @@ h1 {
 
 /* Pressed effect for non-empty tiles */
 .tile:not(:empty) {
-    box-shadow: inset 0.5rem 0.5rem 1rem hsl(0 0% 50% / 0.5), inset -0.5rem -0.5rem 1rem hsl(0 0% 100% / 0.75);
+    background: #e5e9f4;
+    box-shadow: inset 0.3rem 0.3rem 0.8rem hsl(0 0% 50% / 0.3), inset -0.3rem -0.3rem 0.8rem hsl(0 0% 100% / 0.9);
 }
 
-/* Subtle glossy highlight */
+/* Subtle highlight */
 .tile::before {
     content: '';
     position: absolute;
@@ -173,45 +175,44 @@ h1 {
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.2), transparent 70%);
-    opacity: 0.6;
+    background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.15), transparent 70%);
+    opacity: 0.5;
     pointer-events: none;
 }
 
-/* New tile animation */
+/* Animations */
 .tile-new {
-    animation: neoPop 0.3s ease-out;
+    animation: neoPop 0.25s ease-out;
 }
 
-/* Merge animation */
 .tile-merged {
-    animation: neoSquish 0.3s ease;
+    animation: neoSquish 0.25s ease;
 }
 
 @keyframes neoPop {
-    0% { transform: scale(0.9); opacity: 0; box-shadow: var(--shadow); }
-    50% { transform: scale(1.1); opacity: 1; }
-    100% { transform: scale(1); box-shadow: inset 0.5rem 0.5rem 1rem hsl(0 0% 50% / 0.5), inset -0.5rem -0.5rem 1rem hsl(0 0% 100% / 0.75); }
+    0% { transform: scale(0.95); opacity: 0; box-shadow: var(--shadow); }
+    50% { transform: scale(1.05); opacity: 1; }
+    100% { transform: scale(1); box-shadow: inset 0.3rem 0.3rem 0.8rem hsl(0 0% 50% / 0.3), inset -0.3rem -0.3rem 0.8rem hsl(0 0% 100% / 0.9); }
 }
 
 @keyframes neoSquish {
     0% { transform: scale(1); }
-    50% { transform: scale(1.15); box-shadow: inset 0.7rem 0.7rem 1.5rem hsl(0 0% 50% / 0.6), inset -0.7rem -0.7rem 1.5rem hsl(0 0% 100% / 0.8); }
-    100% { transform: scale(1); box-shadow: inset 0.5rem 0.5rem 1rem hsl(0 0% 50% / 0.5), inset -0.5rem -0.5rem 1rem hsl(0 0% 100% / 0.75); }
+    50% { transform: scale(1.08); box-shadow: inset 0.5rem 0.5rem 1rem hsl(0 0% 50% / 0.4), inset -0.5rem -0.5rem 1rem hsl(0 0% 100% / 1); }
+    100% { transform: scale(1); box-shadow: inset 0.3rem 0.3rem 0.8rem hsl(0 0% 50% / 0.3), inset -0.3rem -0.3rem 0.8rem hsl(0 0% 100% / 0.9); }
 }
 
-/* Tile value colors with subtle gradients */
-.tile-2 { background: linear-gradient(145deg, #f0f0f0, #d8d8d8); }
-.tile-4 { background: linear-gradient(145deg, #e8e8e8, #d0d0d0); }
-.tile-8 { background: linear-gradient(145deg, #f2b179, #e09b63); color: #f9f6f2; }
-.tile-16 { background: linear-gradient(145deg, #f59563, #e07c4a); color: #f9f6f2; }
-.tile-32 { background: linear-gradient(145deg, #f67c5f, #e06346); color: #f9f6f2; }
-.tile-64 { background: linear-gradient(145deg, #f65e3b, #e04522); color: #f9f6f2; }
-.tile-128 { background: linear-gradient(145deg, #edcf72, #d8b558); color: #f9f6f2; }
-.tile-256 { background: linear-gradient(145deg, #edcc61, #d8b247); color: #f9f6f2; }
-.tile-512 { background: linear-gradient(145deg, #edc850, #d8af36); color: #f9f6f2; }
-.tile-1024 { background: linear-gradient(145deg, #edc53f, #d8ac25); color: #f9f6f2; }
-.tile-2048 { background: linear-gradient(145deg, #edc22e, #d8a91d); color: #f9f6f2; }
+/* Tile colors (softer for neomorphism) */
+.tile-2 { background: linear-gradient(145deg, #eceef4, #dfe3ed); color: hsl(0 0% 20%); }
+.tile-4 { background: linear-gradient(145deg, #e6e9f2, #d9dde9); color: hsl(0 0% 20%); }
+.tile-8 { background: linear-gradient(145deg, #f2b179, #e9a56b); color: hsl(0 0% 95%); }
+.tile-16 { background: linear-gradient(145deg, #f59563, #ea8754); color: hsl(0 0% 95%); }
+.tile-32 { background: linear-gradient(145deg, #f67c5f, #eb6e50); color: hsl(0 0% 95%); }
+.tile-64 { background: linear-gradient(145deg, #f65e3b, #eb502c); color: hsl(0 0% 95%); }
+.tile-128 { background: linear-gradient(145deg, #edcf72, #e2c364); color: hsl(0 0% 95%); }
+.tile-256 { background: linear-gradient(145deg, #edcc61, #e2c053); color: hsl(0 0% 95%); }
+.tile-512 { background: linear-gradient(145deg, #edc850, #e2bd42); color: hsl(0 0% 95%); }
+.tile-1024 { background: linear-gradient(145deg, #edc53f, #e2ba31); color: hsl(0 0% 95%); }
+.tile-2048 { background: linear-gradient(145deg, #edc22e, #e2b720); color: hsl(0 0% 95%); }
 
 /* Game over overlay */
 .game-over {
@@ -221,19 +222,18 @@ h1 {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(229, 233, 244, 0.9);
+    background: rgba(229, 233, 244, 0.95);
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    color: hsl(0 0% 10%);
-    backdrop-filter: blur(8px);
+    color: hsl(0 0% 20%);
+    backdrop-filter: blur(5px);
     box-shadow: inset 0 0 20px hsl(0 0% 50% / 0.2);
 }
 
 .game-over h2 {
     font-size: 3rem;
     margin-bottom: 20px;
-    text-shadow: 0.1rem 0.1rem 0.2rem hsl(0 0% 50% / 0.3);
 }
 
 .game-over p {
