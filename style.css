@@ -7,7 +7,7 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #faf8ef;
+    background: linear-gradient(135deg, #f5e8d3, #e0d5c1); /* Soft jelly-like background */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -32,7 +32,8 @@ header {
 
 h1 {
     font-size: 48px;
-    color: #776e65;
+    color: #5a5246;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* 3D title effect */
 }
 
 .score-board {
@@ -41,11 +42,12 @@ h1 {
 }
 
 .score-container {
-    background-color: #bbada0;
+    background: linear-gradient(145deg, #d4c6b5, #a89b8c);
     padding: 10px 20px;
-    border-radius: 5px;
-    color: white;
+    border-radius: 10px;
+    color: #fff;
     min-width: 80px;
+    box-shadow: inset 2px 2px 5px rgba(255, 255, 255, 0.5), inset -2px -2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .score-label {
@@ -65,16 +67,17 @@ h1 {
 #new-game, #undo, #restart {
     padding: 10px 20px;
     font-size: 16px;
-    background-color: #8f7a66;
+    background: linear-gradient(145deg, #9f8b77, #7a6652);
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer;
-    transition: background-color 0.2s;
+    transition: transform 0.1s ease;
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3), -2px -2px 4px rgba(255, 255, 255, 0.2);
 }
 
 #new-game:hover, #undo:hover, #restart:hover {
-    background-color: #9f8b77;
+    transform: scale(1.05); /* Slight squish on hover */
 }
 
 /* Grid styling */
@@ -82,61 +85,79 @@ h1 {
     width: 100%;
     max-width: 400px;
     aspect-ratio: 1 / 1;
-    background-color: #bbada0;
-    border-radius: 5px;
+    background: linear-gradient(145deg, #c4b5a5, #a89b8c);
+    border-radius: 15px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-gap: 10px;
-    padding: 10px;
+    grid-gap: 12px;
+    padding: 12px;
     margin: 0 auto;
+    box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.2), inset -5px -5px 10px rgba(255, 255, 255, 0.2);
 }
 
 /* Tile styling */
 .tile {
-    background-color: #cdc1b4;
-    border-radius: 3px;
+    background: linear-gradient(145deg, #e0d5c1, #c4b5a5); /* Default empty tile */
+    border-radius: 12px;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 32px;
     font-weight: bold;
-    color: #776e65;
+    color: #5a5246;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2), -4px -4px 8px rgba(255, 255, 255, 0.3);
     transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
 }
 
-/* New tile animation */
+/* Glossy overlay for 3D effect */
+.tile::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.4), transparent 70%);
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+/* New tile animation (squishy bounce) */
 .tile-new {
-    animation: appear 0.2s ease-in;
+    animation: squishIn 0.3s ease;
 }
 
-/* Merge animation */
+/* Merge animation (jelly squish) */
 .tile-merged {
-    animation: merge 0.2s ease;
+    animation: squishMerge 0.3s ease;
 }
 
-@keyframes appear {
-    from { opacity: 0; transform: scale(0); }
-    to { opacity: 1; transform: scale(1); }
-}
-
-@keyframes merge {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.2); }
+@keyframes squishIn {
+    0% { transform: scale(0.8); opacity: 0; }
+    50% { transform: scale(1.1); opacity: 1; }
     100% { transform: scale(1); }
 }
 
-/* Tile value colors */
-.tile-2 { background-color: #eee4da; }
-.tile-4 { background-color: #ede0c8; }
-.tile-8 { background-color: #f2b179; color: #f9f6f2; }
-.tile-16 { background-color: #f59563; color: #f9f6f2; }
-.tile-32 { background-color: #f67c5f; color: #f9f6f2; }
-.tile-64 { background-color: #f65e3b; color: #f9f6f2; }
-.tile-128 { background-color: #edcf72; color: #f9f6f2; }
-.tile-256 { background-color: #edcc61; color: #f9f6f2; }
-.tile-512 { background-color: #edc850; color: #f9f6f2; }
-.tile-1024 { background-color: #edc53f; color: #f9f6f2; }
-.tile-2048 { background-color: #edc22e; color: #f9f6f2; }
+@keyframes squishMerge {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+    100% { transform: scale(1); }
+}
+
+/* Tile value colors with glossy gradients */
+.tile-2 { background: linear-gradient(145deg, #eee4da, #d4c9b5); }
+.tile-4 { background: linear-gradient(145deg, #ede0c8, #d3c6a8); }
+.tile-8 { background: linear-gradient(145deg, #f2b179, #d89a63); color: #f9f6f2; }
+.tile-16 { background: linear-gradient(145deg, #f59563, #db7c4a); color: #f9f6f2; }
+.tile-32 { background: linear-gradient(145deg, #f67c5f, #dc6346); color: #f9f6f2; }
+.tile-64 { background: linear-gradient(145deg, #f65e3b, #dc4522); color: #f9f6f2; }
+.tile-128 { background: linear-gradient(145deg, #edcf72, #d3b558); color: #f9f6f2; }
+.tile-256 { background: linear-gradient(145deg, #edcc61, #d3b247); color: #f9f6f2; }
+.tile-512 { background: linear-gradient(145deg, #edc850, #d3af36); color: #f9f6f2; }
+.tile-1024 { background: linear-gradient(145deg, #edc53f, #d3ac25); color: #f9f6f2; }
+.tile-2048 { background: linear-gradient(145deg, #edc22e, #d3a91d); color: #f9f6f2; }
 
 /* Game over overlay */
 .game-over {
@@ -146,16 +167,18 @@ h1 {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.6);
     justify-content: center;
     align-items: center;
     flex-direction: column;
     color: #fff;
+    backdrop-filter: blur(5px); /* Frosted glass effect */
 }
 
 .game-over h2 {
     font-size: 48px;
     margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
 
 .game-over p {
